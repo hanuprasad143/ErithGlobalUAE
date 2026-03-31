@@ -1,0 +1,386 @@
+@import "~bootstrap/scss/bootstrap";
+@import "swiper/css/bundle";
+@import "slick-carousel/slick/slick.css";
+@import "../../public/assets/scss/main.scss";
+@import "../../public/assets/css/style.css";
+@import "../../public/assets/css/mains.css";
+@import "../../public/assets/css/bhavani.css";
+@import "../../public/assets/css/flat-icon.css";
+
+.tp-service-title {
+  font-size: 18px;
+  line-height: 1.3;
+  margin-bottom: 3px;
+}
+.tp-service-title a:hover {
+  color: #fecb00;
+}
+
+p {
+  font-size: 15px;
+}
+
+.title {
+  font-size: 25px;
+}
+
+// h3{
+//     font-size: 80px;
+// }
+
+.tp-section-2-title {
+  font-size: 60px;
+  line-height: 1.1;
+  letter-spacing: -1.2px;
+  font-weight: 500;
+  color: #1d3a72;
+}
+
+.tp-service-item:hover .tp-service-wrap::before {
+  top: 10px;
+  height: calc(100% - 20px);
+}
+
+.tp-service-item:hover .tp-service-icon {
+  animation: icon-bounce 0.8s 1;
+}
+
+.tp-service-item:hover .tp-service-btn {
+  transform: translateY(25px);
+}
+
+.tp-service-item:hover .tp-service-btn span::before {
+  transform: scale(1.2);
+}
+
+.tp-service-item:hover .tp-service-btn span svg {
+  transform: scale(1.1);
+}
+
+/* Icon */
+.tp-service-icon {
+  height: 68px;
+}
+
+/* Button */
+.tp-service-btn {
+  transform: translateY(35px);
+  transition: all 0.3s ease-out;
+}
+
+/* Circle Container */
+.tp-service-btn span {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+  height: 52px;
+  width: 52px;
+  line-height: 50px;
+  border-radius: 50%;
+  text-align: center;
+}
+
+/* 🔥 Thinner Circle Border */
+// .tp-service-btn span::before {
+//   position: absolute;
+//   content: "";
+//   top: 0;
+//   left: 0;
+//   height: 100%;
+//   width: 100%;
+//   border-radius: 50%;
+// //   border: 3px solid var(--tp-theme-primary); /* Reduced from 6px */
+//    border: 3px solid var(--tp-theme-5); /* Reduced from 6px */
+
+//   background-color: var(--tp-common-white);
+//   z-index: -1;
+//   transition: all 0.3s ease-out;
+// }
+
+.tp-service-btn span::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
+  border: 3px solid #fecb00; /* Yellow color */
+  background-color: var(--tp-common-white);
+  z-index: -1;
+  transition: all 0.3s ease-out;
+}
+
+/* Icon inside circle */
+.tp-service-btn span svg {
+  transform: scale(1);
+  transition: all 0.3s ease-out;
+}
+
+.tp-event-title {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 0;
+  margin-bottom: 5px;
+}
+.tp-event-title a:hover {
+  color: #fecb00;
+}
+
+.tp-event-item:hover .tp-event-arrow a {
+  color: #fecb00;
+}
+
+/* Base */
+.tp-shop-widget .nav-link {
+  position: relative;
+  padding-left: 18px;
+  color: #292929;
+  transition: all 0.3s ease;
+}
+
+/* Dot default = grey */
+.tp-shop-widget .nav-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ccc; /* grey */
+  transition: all 0.3s ease;
+}
+
+/* Hover */
+.tp-shop-widget .nav-link:hover {
+  color: #fecb00;
+}
+
+.tp-shop-widget .nav-link:hover::before {
+  background-color: #fecb00;
+}
+
+/* Active */
+.tp-shop-widget .nav-link.active {
+  color: #292929;
+}
+
+/* IMPORTANT: keep dot grey when active */
+.tp-shop-widget .nav-link.active::before {
+  background-color: #ccc;
+}
+
+/* benny css */
+
+// .tp-header-info-item a {
+//   display: inline-flex;
+//   align-items: center;
+//   gap: 6px;
+// }
+
+// .tp-header-info-item span {
+//   line-height: 1;
+// }
+
+// .tp-header-info-item svg {
+//   vertical-align: middle;
+// }
+
+/* close */
+
+.tp-about-campus-thumb {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+.tp-about-campus-thumb img {
+  width: 100%;
+  border-radius: 10px;
+  display: block;
+}
+
+.tp-about-campus-thumb::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4); /* Overlay color */
+  border-radius: 10px;
+  transition: 0.3s ease;
+}
+
+.tp-sidebar-post-item a:hover .tp-sidebar-post-title {
+  color: #fecb00 !important;
+}
+
+.tp-sidebar-post-item a:hover .tp-sidebar-post-number {
+  color: #fecb00 !important;
+}
+
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Makes it behave like background-image: cover */
+  z-index: -1;
+}
+
+.hero-title {
+  font-size: clamp(18px, 5vw, 70px);
+  margin-bottom: 5px;
+}
+
+.hero-subtitle {
+  font-size: clamp(12px, 3vw, 26px);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.4;
+}
+
+/* Wrapper spacing */
+.custom-filter-wrapper {
+  margin-top: 20px;
+}
+
+.custom-filter-row {
+  row-gap: 5px;
+}
+
+/* Smaller NiceSelect */
+.custom-select-box .nice-select {
+  height: 40px;
+  line-height: 38px;
+  padding: 0 35px 0 14px;
+  font-size: 14px;
+  border-radius: 6px;
+}
+
+/* Arrow fix */
+.custom-select-box .nice-select:after {
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Dropdown list size */
+.custom-select-box .nice-select .list {
+  font-size: 14px;
+}
+
+.custom-select-box .nice-select:after {
+  display: none !important;
+}
+
+.custom-select-box .nice-select::before {
+  content: "";
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  width: 6px;
+  height: 6px;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
+  transform: translateY(-50%) rotate(45deg);
+  pointer-events: none;
+}
+
+//* navbar styles starts //*
+
+/* ================================
+   Clean Hover – Highlight Only
+================================ */
+
+.tp-megamenu-fullwidth-list ul li a {
+  font-size: 15px;
+  display: inline-block;
+  white-space: nowrap;
+  color: #55585b;
+  text-decoration: none !important;
+  // transition: color 0.2s ease; /* smooth but no animation effect */
+}
+
+/* Highlight only */
+.tp-megamenu-fullwidth-list ul li a:hover {
+  color: #292929 !important;
+  font-weight: medium;
+}
+
+/* Completely remove theme animations & indicators */
+.tp-megamenu-fullwidth-list ul li a::before,
+.tp-megamenu-fullwidth-list ul li a::after {
+  display: none !important;
+  content: none !important;
+  width: 0 !important;
+}
+
+.tp-megamenu-fullwidth-list ul li {
+  border-left: none !important;
+}
+
+.tp-megamenu-fullwidth-list ul li a {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* Stop hover movement completely */
+.tp-megamenu-fullwidth-list ul li a {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  transform: none !important;
+  transition: color 0.2s ease !important; /* only color transition */
+}
+
+/* Prevent theme hover shifting */
+.tp-megamenu-fullwidth-list ul li a:hover {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  transform: none !important;
+}
+
+//* navbar styles ends //*
+
+.tp-campus-life-arrow {
+  display: flex;
+  align-items: start;
+  gap: 25px; /* space between arrows */
+  margin-top: 15px; /* space below button */
+}
+
+.tp-campus-life-arrow span:hover {
+  color: #fecb00;
+  transition: 0.3s ease;
+}
+
+// .tp-product-link {
+//   font-weight: 500;           /* normal state */
+//   transition: all 0.2s ease;  /* smooth effect */
+// }
+
+.tp-product-link:hover {
+  font-weight: 500; /* bold on hover */
+}
+
+
+
+@media (max-width: 768px) {
+  .tp-about-campus-content {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 10px;
+  }
+
+  .tp-about-campus-box {
+    overflow: hidden;
+  }
+}
+
+
+/* 16-03-2026 -  */

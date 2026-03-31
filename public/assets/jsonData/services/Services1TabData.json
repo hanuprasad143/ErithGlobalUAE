@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "tabClass": "show active",
+    "tabId": "tab1",
+    "ariaLabelled": "nav-id-1",
+    "tabData": [
+      {
+        "id": 1,
+        "animationDelay": 0,
+        "icon": "flaticon-quality",
+        "title": "Industrial Expertise and Reliability",
+        "text": "Backed by extensive industrial experience, our team excels in handling the toughest conditions with exceptional solution-oriented skills.",
+        "img": "assets/img/industries/cement.jpeg"
+      },
+      {
+        "id": 2,
+        "animationDelay": "",
+        "icon": "flaticon-innovation",
+        "title": "Commitment to Innovation",
+        "text": "With a continual enhancement approach, we focus on product development, engineering services, and customer feedback to maintain an unrivalled portfolio that sets industry benchmarks.",
+        "img": "assets/img/wedo/commitment.jpeg"
+      },
+      {
+        "id": 3,
+        "animationDelay": "",
+        "icon": "flaticon-solution",
+        "title": "Comprehensive Solutions in Pipeline Technologies",
+        "text": "We deliver innovative, problem-solving, and cost-effective products and services across sealing, pipelines, and corrosion technologies—providing everything our customers need and more.",
+        "img": "assets/img/wedo/comprehensive.jpeg"
+      },
+      {
+        "id": 4,
+        "animationDelay": "",
+        "icon": "flaticon-sustainable",
+        "title": "Sustainability and Global Impact",
+        "text": "Our dedication extends beyond industries—we strive to create a better, more compassionate world by supporting global industries with environmentally compliant technologies.",
+        "img": "assets/img/wedo/sustainability.jpeg"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "tabClass": "",
+    "tabId": "tab2",
+    "ariaLabelled": "nav-id-2",
+    "tabData": [
+      {
+        "id": 1,
+        "animationDelay": 0,
+        "icon": "flaticon-support",
+        "title": "Customer-Centric Responsibility",
+        "text": "Our foremost commitment is to our customers—delivering niche and sophisticated solutions tailored to industrial challenges that enhance productivity and reduce operational costs.",
+         "img": "assets/img/wedo/customer-centric.jpeg"
+      },
+      {
+        "id": 2,
+        "animationDelay": "",
+        "icon": "flaticon-idea",
+        "title": "Innovative Problem Solving",
+        "text": "Through advanced technologies and smart engineering, we create solutions that resolve complex challenges while promoting safer and more efficient operations.",
+         "img": "assets/img/wedo/smart_factory.jpeg"
+      },
+      {
+        "id": 3,
+        "animationDelay": "",
+        "icon": "flaticon-analyst",
+        "title": "Empowered by Expertise",
+        "text": "A skilled team of dexterous engineers, competent sales professionals, and customer service specialists ensures that every solution is built on deep industry knowledge and customer understanding.",
+         "img": "assets/img/wedo/empowered.jpeg"
+      },
+      {
+        "id": 4,
+        "animationDelay": "",
+        "icon": "flaticon-sustainable",
+        "title": "Sustainability and Safety",
+        "text": "By driving operational efficiency and supporting environmentally conscious practices, we contribute to a safer, more sustainable industrial ecosystem.",
+         "img": "assets/img/wedo/safety.jpeg"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "tabClass": "",
+    "tabId": "tab3",
+    "ariaLabelled": "nav-id-3",
+    "tabData": [
+      {
+        "id": 1,
+        "animationDelay": 0,
+        "icon": "flaticon-quality",
+        "title": "Reliable & High-Quality Products",
+        "text": "We provide durable, tested solutions designed to meet global standards. Each product is built for reliability and long-lasting performance.",
+         "img": "assets/img/wedo/high-qualityproducts.jpeg"
+      },
+      {
+        "id": 2,
+        "animationDelay": "",
+        "icon": "flaticon-development",
+        "title": "In-House Engineering Team",
+        "text": "Our skilled engineers design and develop tailored solutions with precision. Their expertise ensures innovation and quality at every step.",
+         "img": "assets/img/wedo/in-house-engineering-team.jpeg"
+      },
+      {
+        "id": 3,
+        "animationDelay": "",
+        "icon": "flaticon-solution-4",
+        "title": "Cost-Efficient Solutions",
+        "text": "We deliver optimized solutions that reduce operational costs without compromising on quality. Every offering is focused on maximizing value.",
+         "img": "assets/img/wedo/cost-efficient-solutions.jpeg"
+      },
+      {
+        "id": 4,
+        "animationDelay": "",
+        "icon": "flaticon-global",
+        "title": "Global Expertise",
+        "text": "With worldwide industry experience, we bring proven practices and innovations to every project. Customers benefit from our broad global perspective.",
+          "img": "assets/img/wedo/global-expertise.jpeg"
+      }
+    ]
+  }
+]
