@@ -2,11 +2,23 @@
 
 import { useEffect, useRef, useState } from "react";
 import * as d3 from "d3";
+import {
+  Feature,
+  FeatureCollection,
+  Geometry,
+  Polygon,
+  MultiPolygon,
+} from "geojson";
 
 interface RotatingEarthProps {
   width?: number;
   height?: number;
   className?: string;
+}
+
+interface Dot {
+  lng: number;
+  lat: number;
 }
 
 export default function RotatingEarth({
@@ -22,14 +34,12 @@ export default function RotatingEarth({
 
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
-
     if (!context) return;
 
     const containerWidth = Math.min(width, window.innerWidth - 40);
     const containerHeight = Math.min(height, window.innerHeight - 100);
 
     const radius = Math.min(containerWidth, containerHeight) / 2.5;
-
     const dpr = window.devicePixelRatio || 1;
 
     canvas.width = containerWidth * dpr;
@@ -50,7 +60,7 @@ export default function RotatingEarth({
 
     const pointInPolygon = (
       point: [number, number],
-      polygon: number[][],
+      polygon: number[][]
     ): boolean => {
       const [x, y] = point;
       let inside = false;
@@ -67,23 +77,30 @@ export default function RotatingEarth({
       return inside;
     };
 
-    const pointInFeature = (point: [number, number], feature: any): boolean => {
+    const pointInFeature = (
+      point: [number, number],
+      feature: Feature<Geometry>
+    ): boolean => {
       const geometry = feature.geometry;
 
+      if (!geometry) return false;
+
       if (geometry.type === "Polygon") {
-        const coordinates = geometry.coordinates;
+        const coords = (geometry as Polygon).coordinates;
 
-        if (!pointInPolygon(point, coordinates[0])) return false;
+        if (!pointInPolygon(point, coords[0])) return false;
 
-        for (let i = 1; i < coordinates.length; i++) {
-          if (pointInPolygon(point, coordinates[i])) return false;
+        for (let i = 1; i < coords.length; i++) {
+          if (pointInPolygon(point, coords[i])) return false;
         }
 
         return true;
       }
 
       if (geometry.type === "MultiPolygon") {
-        for (const polygon of geometry.coordinates) {
+        const coords = (geometry as MultiPolygon).coordinates;
+
+        for (const polygon of coords) {
           if (pointInPolygon(point, polygon[0])) {
             let inHole = false;
 
@@ -102,7 +119,10 @@ export default function RotatingEarth({
       return false;
     };
 
-    const generateDotsInPolygon = (feature: any, spacing = 16) => {
+    const generateDotsInPolygon = (
+      feature: Feature<Geometry>,
+      spacing = 16
+    ): [number, number][] => {
       const dots: [number, number][] = [];
 
       const bounds = d3.geoBounds(feature);
@@ -123,13 +143,8 @@ export default function RotatingEarth({
       return dots;
     };
 
-    interface Dot {
-      lng: number;
-      lat: number;
-    }
-
     const dots: Dot[] = [];
-    let landFeatures: any;
+    let landFeatures: FeatureCollection;
 
     const render = () => {
       context.clearRect(0, 0, containerWidth, containerHeight);
@@ -140,27 +155,22 @@ export default function RotatingEarth({
       const centerX = containerWidth / 2;
       const centerY = containerHeight / 2;
 
-      /* Globe Outline */
       context.beginPath();
       context.arc(centerX, centerY, currentScale, 0, 2 * Math.PI);
-
       context.strokeStyle = "#fff";
       context.lineWidth = 0.5 * scaleFactor;
-
       context.shadowColor = "#fff";
       context.shadowBlur = 20;
-
       context.stroke();
       context.shadowBlur = 0;
 
-      /* Glass Inner Highlight */
       const gradient = context.createRadialGradient(
         centerX - currentScale / 3,
         centerY - currentScale / 3,
         currentScale * 0.2,
         centerX,
         centerY,
-        currentScale,
+        currentScale
       );
 
       gradient.addColorStop(0, "rgba(255,255,255,0.18)");
@@ -183,7 +193,7 @@ export default function RotatingEarth({
 
         context.beginPath();
 
-        landFeatures.features.forEach((feature: any) => {
+        landFeatures.features.forEach((feature) => {
           path(feature);
         });
 
@@ -192,7 +202,6 @@ export default function RotatingEarth({
 
         dots.forEach((dot) => {
           const projected = projection([dot.lng, dot.lat]);
-
           if (!projected) return;
 
           context.beginPath();
@@ -201,7 +210,7 @@ export default function RotatingEarth({
             projected[1],
             1.2 * scaleFactor,
             0,
-            2 * Math.PI,
+            2 * Math.PI
           );
 
           context.fillStyle = "#f7d35c";
@@ -213,14 +222,14 @@ export default function RotatingEarth({
     const loadWorld = async () => {
       try {
         const res = await fetch(
-          "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/master/110m/physical/ne_110m_land.json",
+          "https://raw.githubusercontent.com/martynafford/natural-earth-geojson/master/110m/physical/ne_110m_land.json"
         );
 
-        landFeatures = await res.json();
+        const data: FeatureCollection = await res.json();
+        landFeatures = data;
 
-        landFeatures.features.forEach((feature: any) => {
+        landFeatures.features.forEach((feature) => {
           const generated = generateDotsInPolygon(feature);
-
           generated.forEach(([lng, lat]) => {
             dots.push({ lng, lat });
           });
@@ -232,18 +241,14 @@ export default function RotatingEarth({
       }
     };
 
-    /* Rotation */
-
-    const rotation = [0, 0];
+    const rotation: [number, number] = [0, 0];
     let autoRotate = true;
 
     const rotate = () => {
       if (!autoRotate) return;
 
       rotation[0] += 0.4;
-
       projection.rotate(rotation);
-
       render();
     };
 
@@ -254,8 +259,7 @@ export default function RotatingEarth({
 
       const startX = event.clientX;
       const startY = event.clientY;
-
-      const startRotation = [...rotation];
+      const startRotation: [number, number] = [...rotation];
 
       const move = (e: MouseEvent) => {
         const dx = e.clientX - startX;
@@ -267,7 +271,6 @@ export default function RotatingEarth({
         rotation[1] = Math.max(-90, Math.min(90, rotation[1]));
 
         projection.rotate(rotation);
-
         render();
       };
 
@@ -285,7 +288,6 @@ export default function RotatingEarth({
     };
 
     canvas.addEventListener("mousedown", handleMouseDown);
-
     loadWorld();
 
     return () => {
@@ -305,14 +307,7 @@ export default function RotatingEarth({
   return (
     <div className={`relative flex items-center justify-center ${className}`}>
       <canvas ref={canvasRef} className="w-full h-auto rounded-full" />
-
-      {/* Glass Reflection Overlay */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-full
-        bg-gradient-to-br
-        from-white/30 via-transparent to-white/10
-        backdrop-blur-[2px]"
-      />
+      <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-br from-white/30 via-transparent to-white/10 backdrop-blur-[2px]" />
     </div>
   );
 }

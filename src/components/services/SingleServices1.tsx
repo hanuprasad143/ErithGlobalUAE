@@ -7,6 +7,7 @@ type ServiceData = {
   icon: string;
   title: string;
   text: string;
+  img: string;
 };
 
 interface SingleServices1Props {
@@ -14,7 +15,7 @@ interface SingleServices1Props {
 }
 
 const SingleServices1: React.FC<SingleServices1Props> = ({ data }) => {
-  const { icon, title, text, img } = data;
+  const { title, img } = data;
 
   return (
     <div className="services-style-one">
